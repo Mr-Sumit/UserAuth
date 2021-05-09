@@ -28,7 +28,7 @@ public class UserService implements IUserService {
 	@Override
 	public User getUserById(long id) throws NoSuchElementException {
 		Optional<User> dbUserById = userRepository.findById(id);
-		return dbUserById.orElseThrow();
+		return dbUserById.orElseThrow(NoSuchElementException::new);
 	}
 
 	@Override
