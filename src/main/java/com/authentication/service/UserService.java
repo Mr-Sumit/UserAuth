@@ -46,7 +46,7 @@ public class UserService implements IUserService {
 	@Override
 	public User getUserByEmail(String email) throws NoSuchElementException {
 		Optional<User> dbUserByEmail = userRepository.findByEmail(email);
-		return dbUserByEmail.orElseThrow();
+		return dbUserByEmail.orElseThrow(NoSuchElementException::new);
 		
 	}
 	
