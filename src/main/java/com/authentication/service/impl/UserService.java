@@ -1,4 +1,4 @@
-package com.authentication.service;
+package com.authentication.service.impl;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.authentication.dao.IUserRepository;
 import com.authentication.model.User;
+import com.authentication.service.IUserService;
 @Service
 public class UserService implements IUserService {
 	
