@@ -3,7 +3,9 @@ package com.authentication.controller;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +24,8 @@ import com.authentication.service.IUserService;
 public class UserController {
 	@Autowired
 	private IUserService userService;
-	
+	BeanFactory beanFactory;
+	ApplicationContext appContext;
 	@PostMapping("/newuser")
 	public ResponseEntity<Void> createUser(@RequestBody User newUser) {
 		userService.createUser(newUser);
