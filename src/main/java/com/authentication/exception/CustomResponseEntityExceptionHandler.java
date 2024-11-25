@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +23,14 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	}
 	 
 	@ExceptionHandler(IllegalArgumentException.class)
-	public ResponseEntity<ApiError> handleIllegalArgumentException(NoSuchElementException ex, WebRequest request){
+	public ResponseEntity<ApiError> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request){
 		ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, new Date(), ex.getMessage());
 		return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(AuthenticationException.class)
+	public ResponseEntity<ApiError> handleUsernameNotFoundException(AuthenticationException ex, WebRequest request){
+		ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, new Date(), ex.getMessage());
+		return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
+	}
 }

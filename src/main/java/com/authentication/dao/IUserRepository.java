@@ -10,4 +10,5 @@ import com.authentication.model.User;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByEmail(String email);
+	Optional<User> findByName(String name);
 }

@@ -2,7 +2,6 @@ package com.authentication.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 import com.authentication.model.User;
 

@@ -9,8 +9,8 @@ public class AppEventListener implements ApplicationListener{
 	@Override
 	public void onApplicationEvent(ApplicationEvent event) {
 		
-		Class eventClass = event.getClass();
-		System.out.println(eventClass.toString());
+//		Class eventClass = event.getClass();
+//		System.out.println(eventClass.toString());
 	}
 
 }
