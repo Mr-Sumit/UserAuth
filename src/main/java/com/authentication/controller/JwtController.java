@@ -13,8 +13,8 @@ import com.authentication.model.User;
 import com.authentication.service.impl.JwtService;
 
 @RestController
-@RequestMapping("/")
-public class LoginController {
+@RequestMapping("/jwt")
+public class JwtController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -22,11 +22,9 @@ public class LoginController {
 	@Autowired
 	private JwtService jwtService;
 	
-	@PostMapping("login")
-	public String login(@RequestBody User user) {
+	@PostMapping("/token")
+	public String generateToken(@RequestBody User user) {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
-		
 		return authentication.isAuthenticated() ? jwtService.generateToken(user.getName()) : "User info is not found";
-		
 	}
 }
