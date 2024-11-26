@@ -29,7 +29,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 	}
 	
 	@ExceptionHandler(AuthenticationException.class)
-	public ResponseEntity<ApiError> handleUsernameNotFoundException(AuthenticationException ex, WebRequest request){
+	public ResponseEntity<ApiError> handleAuthenticationException(AuthenticationException ex, WebRequest request){
 		ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, new Date(), ex.getMessage());
 		return new ResponseEntity<>(apiError, HttpStatus.NOT_FOUND);
 	}

@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public User createUser(User newUser) {
 		//newUser.setPassword(UserPasswordEncrypter.encrypteUserPassword(newUser.getPassword()));
-		newUser.setPassword(new BCryptPasswordEncoder(12).encode(newUser.getPassword()));
+		newUser.setPassword(new BCryptPasswordEncoder().encode(newUser.getPassword()));
 		return userRepository.save(newUser);
 	}
 

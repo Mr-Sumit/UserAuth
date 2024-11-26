@@ -29,7 +29,7 @@ public class UserController {
 
 	@GetMapping("/greet")
 	public String greet(HttpServletRequest request) {
-		return "Welcome to your App " + request.getSession().getId();
+		return "Welcome to your App ";
 	}
 
 	@GetMapping("/csrf")
