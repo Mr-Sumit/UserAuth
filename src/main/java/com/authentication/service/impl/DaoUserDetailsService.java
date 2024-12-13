@@ -25,16 +25,18 @@ public class DaoUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<User> userFromDB = userRepository.findByName(username);
 		UserDetails userDetailsObj = null;
-		
+
 		if (!userFromDB.isPresent()) {
 			throw new UsernameNotFoundException(username + " is not Found in DB");
 		}
-		
+
 		User dbUser = userFromDB.get();
-		System.out.println("dbUser password = " + dbUser.getPassword());
-		Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) Arrays.asList(new SimpleGrantedAuthority("ADMIN"));
-		userDetailsObj = new org.springframework.security.core.userdetails.User(dbUser.getName(),
-				dbUser.getPassword(), authorities);
+		
+		Collection<? extends GrantedAuthority> authorities = "admin".equalsIgnoreCase(dbUser.getName())
+				? (Collection<? extends GrantedAuthority>) Arrays.asList(new SimpleGrantedAuthority("ADMIN"))
+				: (Collection<? extends GrantedAuthority>) Arrays.asList(new SimpleGrantedAuthority("USER"));
+		userDetailsObj = new org.springframework.security.core.userdetails.User(dbUser.getName(), dbUser.getPassword(),
+				authorities);
 		return userDetailsObj;
 	}
 }

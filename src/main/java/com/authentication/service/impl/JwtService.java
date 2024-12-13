@@ -11,8 +11,12 @@ import java.util.function.Function;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import com.authentication.controller.JwtController;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -26,6 +30,7 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 
+	private static Logger log = LoggerFactory.getLogger(JwtService.class);
 	private String secretKey;
 
 	public JwtService() {
@@ -91,9 +96,8 @@ public class JwtService {
 
 	// This method will do validate the userName in token against the userName in
 	// Security Context UserDetails object
-	public boolean validateToken(String token, UserDetails userDetails) {
-		String userName = extractUserNameFromToken(token);
-		return (userName.equals(userDetails.getUsername()) && !isTokenExpired(token));
+	public boolean validateToken(String token, String tokenUserName, UserDetails userDetails) {
+		return (tokenUserName.equals(userDetails.getUsername()) && !isTokenExpired(token));
 	}
 
 	private boolean isTokenExpired(String token) {

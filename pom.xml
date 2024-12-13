@@ -10,8 +10,8 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.authentication</groupId>
-	<artifactId>UserAuthentication</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>user-authentication</artifactId>
+	<version>1.0.0</version>
 	<name>UserAuthentication</name>
 	<description>User Login Registration App</description>
 	<properties>
@@ -82,6 +82,13 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20231013</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

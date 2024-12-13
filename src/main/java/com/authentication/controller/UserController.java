@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +24,11 @@ import com.authentication.service.IUserService;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+	
+	private static Logger log = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	private IUserService userService;
-//	BeanFactory beanFactory;
-//	ApplicationContext appContext;
 
 	@GetMapping("/greet")
 	public String greet(HttpServletRequest request) {
@@ -39,6 +42,7 @@ public class UserController {
 
 	@PostMapping("/newuser")
 	public ResponseEntity<Void> createUser(@RequestBody User newUser) {
+		log.info("newUser data in request : {}", newUser);
 		userService.createUser(newUser);
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}

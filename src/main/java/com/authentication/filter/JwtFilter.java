@@ -41,7 +41,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
 		if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = daoUserDetailsService.loadUserByUsername(userName);
-			if (jwtService.validateToken(token, userDetails)) {
+			if (jwtService.validateToken(token, userName,userDetails)) {
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
 						null, userDetails.getAuthorities());
 				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

@@ -48,7 +48,7 @@ public class SecurityConfig {
 		Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry> authorizeRequestsCustomizer = new Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry>() {
 			@Override
 			public void customize(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry t) {
-				t.regexMatchers("/jwt/token", "/user/newuser").permitAll();
+				t.regexMatchers("/jwt/token/generate", "/jwt/token/validate","/user/newuser").permitAll();
 			}
 		};
 		http.authorizeRequests(authorizeRequestsCustomizer);
