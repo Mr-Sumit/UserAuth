@@ -18,7 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.authentication.service.impl.DaoUserDetailsService;
 import com.authentication.service.impl.JwtService;
 
-@Component
+//@Component
 public class JwtFilter extends OncePerRequestFilter {
 
 	@Autowired

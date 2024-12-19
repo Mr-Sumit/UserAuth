@@ -40,7 +40,7 @@ public class UserController {
 		return (CsrfToken) request.getAttribute("_csrf");
 	}
 
-	@PostMapping("/newuser")
+	@PostMapping("/register")
 	public ResponseEntity<Void> createUser(@RequestBody User newUser) {
 		log.info("newUser data in request : {}", newUser);
 		userService.createUser(newUser);

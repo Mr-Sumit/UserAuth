@@ -18,11 +18,7 @@ import org.springframework.security.config.annotation.web.configurers.SessionMan
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.authentication.filter.JwtFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -32,8 +28,8 @@ public class SecurityConfig {
 	@Autowired
 	private UserDetailsService userDetailService;
 	
-	@Autowired
-	private JwtFilter jwtFilter;
+//	@Autowired
+//	private JwtFilter jwtFilter;
 
 	/*
 	 * below method override the spring security filter chain, return custom
@@ -48,7 +44,7 @@ public class SecurityConfig {
 		Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry> authorizeRequestsCustomizer = new Customizer<ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry>() {
 			@Override
 			public void customize(ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry t) {
-				t.regexMatchers("/jwt/token/generate", "/jwt/token/validate","/user/newuser").permitAll();
+				t.regexMatchers("/jwt/token/generate", "/jwt/token/validate","/user/register").permitAll();
 			}
 		};
 		http.authorizeRequests(authorizeRequestsCustomizer);
@@ -64,7 +60,7 @@ public class SecurityConfig {
 		http.headers().frameOptions(frameOptionsCustomizer);
 		// http.headers(customizer -> customizer.disable());
 
-		http.authorizeRequests(request -> request.anyRequest().authenticated());
+		//http.authorizeRequests(request -> request.anyRequest().authenticated());
 
 		Customizer<HttpBasicConfigurer<HttpSecurity>> httpBasicCustomizer = new Customizer<HttpBasicConfigurer<HttpSecurity>>() {
 			@Override
@@ -86,7 +82,7 @@ public class SecurityConfig {
 		// http.sessionManagement(session ->
 		// session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 		
-		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+		//http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
 

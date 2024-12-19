@@ -37,15 +37,7 @@ class UserAuthenticationApplicationTests {
 		System.out.println("Before");
 	}
 	
-	@AfterEach
-	void after() {
-		System.out.println("After");
-	}
 	
-	@AfterAll
-	static void afterAll() {
-		System.out.println("AfterAll");
-	}
 	
 	@Test
 	void contextLoads() {
@@ -60,6 +52,16 @@ class UserAuthenticationApplicationTests {
 	
 	private User createUserStub() {
 		return new User();
+	}
+	
+	@AfterEach
+	void after() {
+		System.out.println("After");
+	}
+	
+	@AfterAll
+	static void afterAll() {
+		System.out.println("AfterAll");
 	}
 
 }
